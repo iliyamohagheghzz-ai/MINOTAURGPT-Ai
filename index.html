@@ -1,0 +1,484 @@
+<!doctype html><html><head><style type="text/css">/* Reset */
+* {
+  margin: 0;
+    padding: 0;
+      box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Body & container */
+        body {
+          background: #121212;
+            color: #eee;
+              display: flex;
+                justify-content: center;
+                  align-items: flex-start;
+                    min-height: 100vh;
+                      padding: 20px;
+                        overflow-x: hidden;
+                        }
+
+                        .container {
+                          width: 100%;
+                            max-width: 900px;
+                              background: #1e1e1e;
+                                border-radius: 10px;
+                                  box-shadow: 0 0 15px rgba(0,0,0,0.8);
+                                    padding: 20px;
+                                    }
+
+                                    /* Header */
+                                    header {
+                                      display: flex;
+                                        justify-content: space-between;
+                                          align-items: center;
+                                            margin-bottom: 15px;
+                                            }
+
+                                            header h1 {
+                                              font-weight: 700;
+                                                color: #ff6f61;
+                                                }
+
+                                                /* Tabs */
+                                                .tabs {
+                                                  display: flex;
+                                                    margin-bottom: 15px;
+                                                    }
+
+                                                    .tab {
+                                                      flex: 1;
+                                                        text-align: center;
+                                                          padding: 12px 0;
+                                                            cursor: pointer;
+                                                              background: #2a2a2a;
+                                                                border-radius: 6px 6px 0 0;
+                                                                  color: #aaa;
+                                                                    user-select: none;
+                                                                      transition: background 0.3s, color 0.3s;
+                                                                      }
+
+                                                                      .tab.active {
+                                                                        background: #ff6f61;
+                                                                          color: white;
+                                                                          }
+
+                                                                          /* Content Areas */
+                                                                          .content {
+                                                                            background: #2a2a2a;
+                                                                              border-radius: 0 6px 6px 6px;
+                                                                                padding: 20px;
+                                                                                  min-height: 400px;
+                                                                                    overflow-y: auto;
+                                                                                      color: #ddd;
+                                                                                      }
+
+                                                                                      /* Chat area */
+                                                                                      #chatArea {
+                                                                                        height: 400px;
+                                                                                          overflow-y: auto;
+                                                                                            background: #121212;
+                                                                                              border-radius: 6px;
+                                                                                                padding: 15px;
+                                                                                                  box-shadow: inset 0 0 10px #000;
+                                                                                                    margin-bottom: 10px;
+                                                                                                      scrollbar-width: thin;
+                                                                                                        scrollbar-color: #ff6f61 #121212;
+                                                                                                        }
+
+                                                                                                        #chatArea::-webkit-scrollbar {
+                                                                                                          width: 8px;
+                                                                                                          }
+
+                                                                                                          #chatArea::-webkit-scrollbar-thumb {
+                                                                                                            background-color: #ff6f61;
+                                                                                                              border-radius: 10px;
+                                                                                                              }
+
+                                                                                                              /* Message bubbles */
+                                                                                                              .message {
+                                                                                                                margin-bottom: 10px;
+                                                                                                                  max-width: 75%;
+                                                                                                                    padding: 10px 15px;
+                                                                                                                      border-radius: 20px;
+                                                                                                                        line-height: 1.4;
+                                                                                                                          font-size: 0.95rem;
+                                                                                                                            word-wrap: break-word;
+                                                                                                                            }
+
+                                                                                                                            .message.user {
+                                                                                                                              background: #ff6f61;
+                                                                                                                                color: white;
+                                                                                                                                  align-self: flex-end;
+                                                                                                                                    border-bottom-right-radius: 2px;
+                                                                                                                                    }
+
+                                                                                                                                    .message.bot {
+                                                                                                                                      background: #444;
+                                                                                                                                        color: #eee;
+                                                                                                                                          align-self: flex-start;
+                                                                                                                                            border-bottom-left-radius: 2px;
+                                                                                                                                            }
+
+                                                                                                                                            /* Input area */
+                                                                                                                                            #inputArea {
+                                                                                                                                              display: flex;
+                                                                                                                                                gap: 10px;
+                                                                                                                                                  margin-top: 10px;
+                                                                                                                                                  }
+
+                                                                                                                                                  #userInput {
+                                                                                                                                                    flex: 1;
+                                                                                                                                                      padding: 10px 15px;
+                                                                                                                                                        border-radius: 30px;
+                                                                                                                                                          border: none;
+                                                                                                                                                            background: #333;
+                                                                                                                                                              color: white;
+                                                                                                                                                                font-size: 1rem;
+                                                                                                                                                                  outline: none;
+                                                                                                                                                                    transition: background 0.3s;
+                                                                                                                                                                    }
+
+                                                                                                                                                                    #userInput::placeholder {
+                                                                                                                                                                      color: #bbb;
+                                                                                                                                                                      }
+
+                                                                                                                                                                      #userInput:focus {
+                                                                                                                                                                        background: #444;
+                                                                                                                                                                        }
+
+                                                                                                                                                                        #sendBtn {
+                                                                                                                                                                          background: #ff6f61;
+                                                                                                                                                                            border: none;
+                                                                                                                                                                              border-radius: 30px;
+                                                                                                                                                                                padding: 0 20px;
+                                                                                                                                                                                  color: white;
+                                                                                                                                                                                    font-weight: 700;
+                                                                                                                                                                                      cursor: pointer;
+                                                                                                                                                                                        transition: background 0.3s;
+                                                                                                                                                                                        }
+
+                                                                                                                                                                                        #sendBtn:hover {
+                                                                                                                                                                                          background: #e05a4f;
+                                                                                                                                                                                          }
+
+                                                                                                                                                                                          /* Loading bar */
+                                                                                                                                                                                          #loadingBarContainer {
+                                                                                                                                                                                            width: 100%;
+                                                                                                                                                                                              background: #333;
+                                                                                                                                                                                                border-radius: 10px;
+                                                                                                                                                                                                  overflow: hidden;
+                                                                                                                                                                                                    margin-bottom: 15px;
+                                                                                                                                                                                                      height: 8px;
+                                                                                                                                                                                                        display: none;
+                                                                                                                                                                                                        }
+
+                                                                                                                                                                                                        #loadingBar {
+                                                                                                                                                                                                          height: 100%;
+                                                                                                                                                                                                            width: 0%;
+                                                                                                                                                                                                              background: linear-gradient(90deg, #ff6f61, #fddb92);
+                                                                                                                                                                                                                animation: rainbow 3s linear infinite;
+                                                                                                                                                                                                                }
+
+                                                                                                                                                                                                                @keyframes rainbow {
+                                                                                                                                                                                                                  0%{background-position:0% 50%}
+                                                                                                                                                                                                                    50%{background-position:100% 50%}
+                                                                                                                                                                                                                      100%{background-position:0% 50%}
+                                                                                                                                                                                                                      }
+
+                                                                                                                                                                                                                      /* Buttons */
+                                                                                                                                                                                                                      button {
+                                                                                                                                                                                                                        user-select: none;
+                                                                                                                                                                                                                        }
+
+                                                                                                                                                                                                                        /* Scroll for games content */
+                                                                                                                                                                                                                        #gameContainer {
+                                                                                                                                                                                                                          background: #222;
+                                                                                                                                                                                                                            border-radius: 6px;
+                                                                                                                                                                                                                              padding: 15px;
+                                                                                                                                                                                                                                color: white;
+                                                                                                                                                                                                                                  min-height: 300px;
+                                                                                                                                                                                                                                  }
+
+                                                                                                                                                                                                                                  /* Admin panel styles */
+                                                                                                                                                                                                                                  #adminPanel {
+                                                                                                                                                                                                                                    background: #1a1a1a;
+                                                                                                                                                                                                                                      border-radius: 6px;
+                                                                                                                                                                                                                                        padding: 20px;
+                                                                                                                                                                                                                                          color: #ccc;
+                                                                                                                                                                                                                                            max-height: 400px;
+                                                                                                                                                                                                                                              overflow-y: auto;
+                                                                                                                                                                                                                                              }
+
+                                                                                                                                                                                                                                              #adminPanel h2 {
+                                                                                                                                                                                                                                                margin-bottom: 15px;
+                                                                                                                                                                                                                                                  color: #ff6f61;
+                                                                                                                                                                                                                                                  }
+
+                                                                                                                                                                                                                                                  .adminUser {
+                                                                                                                                                                                                                                                    border-bottom: 1px solid #333;
+                                                                                                                                                                                                                                                      padding: 8px 0;
+                                                                                                                                                                                                                                                      }
+
+                                                                                                                                                                                                                                                      .adminUser span.status {
+                                                                                                                                                                                                                                                        font-size: 0.85rem;
+                                                                                                                                                                                                                                                          color: #888;
+                                                                                                                                                                                                                                                            margin-left: 10px;
+                                                                                                                                                                                                                                                            }
+
+                                                                                                                                                                                                                                                            .messageNotification {
+                                                                                                                                                                                                                                                              background: #ff6f61;
+                                                                                                                                                                                                                                                                color: white;
+                                                                                                                                                                                                                                                                  padding: 8px 10px;
+                                                                                                                                                                                                                                                                    border-radius: 8px;
+                                                                                                                                                                                                                                                                      margin: 10px 0;
+                                                                                                                                                                                                                                                                        font-weight: 700;
+                                                                                                                                                                                                                                                                        }
+
+                                                                                                                                                                                                                                                                        /* Responsive */
+                                                                                                                                                                                                                                                                        @media (max-width: 600px) {
+                                                                                                                                                                                                                                                                          .container {
+                                                                                                                                                                                                                                                                              padding: 10px;
+                                                                                                                                                                                                                                                                                }
+
+                                                                                                                                                                                                                                                                                  #chatArea {
+                                                                                                                                                                                                                                                                                      height: 300px;
+                                                                                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                                                                                        }</style></head><body><!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>برنامه هوش مصنوعی و بازی‌ها</title>
+<style>
+  body {font-family: Tahoma, sans-serif; background:#111; color:#eee; margin:0; padding:0; direction: rtl;}
+    #loader {display:none; position:fixed;top:0;left:0;width:100%;height:100%;background:#000a; color:#0f0; font-size:2em; text-align:center; padding-top:40vh; z-index:9999;}
+      #loginSection, #registerSection, #mainSection, #gameSection, #adminSection {max-width: 400px; margin: 20px auto; background:#222; padding: 20px; border-radius: 10px;}
+        input, select, button, textarea {width: 100%; margin: 10px 0; padding: 10px; border-radius:5px; border:none; font-size:1em;}
+          button {background:#0a74da; color:#fff; cursor:pointer;}
+            button:hover {background:#095bb5;}
+              h2 {margin-top:0; color:#0af;}
+                .hidden {display:none;}
+                  #chatLog {height: 200px; overflow-y: auto; background:#000; padding:10px; border-radius:5px; margin-bottom:10px; color:#0f0; font-family: monospace;}
+                    .messageUser {color:#0af;}
+                      .messageAI {color:#afa;}
+                        #gameSection {display:none;}
+                          #adminSection {display:none; max-width: 600px;}
+                            table {width: 100%; border-collapse: collapse; margin-top: 10px;}
+                              th, td {border: 1px solid #444; padding: 8px; text-align: center;}
+                                th {background:#333;}
+                                  .green {color:#0f0;}
+                                    .red {color:#f00;}
+                                      .gameButton {width:auto; margin: 5px 2px; display:inline-block; background:#222; color:#0af; border: 1px solid #0af;}
+                                        .gameButton:hover {background:#0af; color:#222; cursor:pointer;}
+                                          .infoLabel {font-size: 0.9em; color:#999;}
+                                            ::placeholder {color:#666;}
+                                            </style>
+                                            </head>
+                                            <body>
+                                            <div id="loader">Loading... 0%</div>
+
+                                            <div id="loginSection">
+                                              <h2>ورود به برنامه</h2>
+                                                <input type="email" id="loginEmail" placeholder="ایمیل" />
+                                                  <input type="password" id="loginPassword" placeholder="رمز عبور" />
+                                                    <button id="btnLogin">ورود</button>
+                                                      <p>یا <button id="showRegister">ثبت نام</button></p>
+                                                      </div>
+
+                                                      <div id="registerSection" class="hidden">
+                                                        <h2>ثبت نام</h2>
+                                                          <input type="email" id="regEmail" placeholder="ایمیل" />
+                                                            <input type="password" id="regPassword" placeholder="رمز عبور" />
+                                                              <input type="text" id="regNickname" placeholder="نام مستعار (اختیاری)" list="nicknameList" />
+                                                                <datalist id="nicknameList">
+                                                                    <option value="کلثوم"></option>
+                                                                        <option value="آقا قلی"></option>
+                                                                            <option value="بزن بهادر"></option>
+                                                                                <option value="نازنین"></option>
+                                                                                    <option value="شنگول"></option>
+                                                                                        <option value="گلپونه"></option>
+                                                                                            <option value="نیک‌نیم"></option>
+                                                                                                <option value="بی‌ادب"></option>
+                                                                                                    <option value="خوش‌تیپ"></option>
+                                                                                                        <option value="عاشق"></option>
+                                                                                                            <option value="آشوبگر"></option>
+                                                                                                                <option value="گرگ تنها"></option>
+                                                                                                                    <option value="عمو جواد"></option>
+                                                                                                                        <option value="تک‌شاخ"></option>
+                                                                                                                            <option value="شاهین"></option>
+                                                                                                                                <option value="بادصبا"></option>
+                                                                                                                                    <option value="فلفل"></option>
+                                                                                                                                        <option value="مو قرمز"></option>
+                                                                                                                                            <option value="خوشحال"></option>
+                                                                                                                                                <option value="آقازاده"></option>
+                                                                                                                                                    <option value="دستمال کاغذی"></option>
+                                                                                                                                                        <option value="موفق"></option>
+                                                                                                                                                            <option value="دلسوز"></option>
+                                                                                                                                                                <option value="بی‌خیال"></option>
+                                                                                                                                                                    <option value="روشن‌فکر"></option>
+                                                                                                                                                                        <option value="بازیکن"></option>
+                                                                                                                                                                            <option value="بلندپرواز"></option>
+                                                                                                                                                                                <option value="شکمو"></option>
+                                                                                                                                                                                    <option value="چابک"></option>
+                                                                                                                                                                                        <option value="غول‌آسا"></option>
+                                                                                                                                                                                            <option value="باحال"></option>
+                                                                                                                                                                                                <option value="خفن"></option>
+                                                                                                                                                                                                    <option value="خسته"></option>
+                                                                                                                                                                                                        <option value="حوصله‌سربر"></option>
+                                                                                                                                                                                                            <option value="خوشمزه"></option>
+                                                                                                                                                                                                                <option value="آرام"></option>
+                                                                                                                                                                                                                    <option value="بی‌تفاوت"></option>
+                                                                                                                                                                                                                        <option value="تازه‌کار"></option>
+                                                                                                                                                                                                                          </datalist>
+                                                                                                                                                                                                                            <button id="btnRegister">ثبت نام</button>
+                                                                                                                                                                                                                              <p>یا <button id="showLogin">بازگشت به ورود</button></p>
+                                                                                                                                                                                                                              </div>
+
+                                                                                                                                                                                                                              <div id="mainSection" class="hidden">
+                                                                                                                                                                                                                                <h2>خوش آمدی، <span id="userNickname"></span></h2>
+                                                                                                                                                                                                                                  <button id="btnLogout">خروج</button>
+                                                                                                                                                                                                                                    <div>
+                                                                                                                                                                                                                                        <h3>هوش مصنوعی</h3>
+                                                                                                                                                                                                                                            <div id="chatLog"></div>
+                                                                                                                                                                                                                                                <input type="text" id="userQuestion" placeholder="سوال خود را اینجا بنویس..." />
+                                                                                                                                                                                                                                                    <button id="btnAsk">پرسش</button>
+                                                                                                                                                                                                                                                      </div>
+
+                                                                                                                                                                                                                                                        <div>
+                                                                                                                                                                                                                                                            <h3>بازی‌ها</h3>
+                                                                                                                                                                                                                                                                <button class="gameButton" data-game="سنگ کاغذ قیچی">سنگ کاغذ قیچی</button>
+                                                                                                                                                                                                                                                                    <button class="gameButton" data-game="چیستان">چیستان</button>
+                                                                                                                                                                                                                                                                        <button class="gameButton" data-game="حافظه">حافظه</button>
+                                                                                                                                                                                                                                                                            <button class="gameButton" data-game="حدس کلمه">حدس کلمه</button>
+                                                                                                                                                                                                                                                                                <button class="gameButton" data-game="حدس عدد">حدس عدد</button>
+                                                                                                                                                                                                                                                                                  </div>
+                                                                                                                                                                                                                                                                                  </div>
+
+                                                                                                                                                                                                                                                                                  <div id="gameSection" class="hidden">
+                                                                                                                                                                                                                                                                                    <h2 id="gameTitle"></h2>
+                                                                                                                                                                                                                                                                                      <div id="gameContent"></div>
+                                                                                                                                                                                                                                                                                        <button id="btnExitGame">خروج از بازی</button>
+                                                                                                                                                                                                                                                                                        </div>
+
+                                                                                                                                                                                                                                                                                        <div id="adminSection" class="hidden">
+                                                                                                                                                                                                                                                                                          <h2>پنل مدیریت</h2>
+                                                                                                                                                                                                                                                                                            <button id="btnAdminLogout">خروج از پنل مدیریت</button>
+                                                                                                                                                                                                                                                                                              <h3>کاربران ثبت‌نام‌شده</h3>
+                                                                                                                                                                                                                                                                                                <table id="usersTable">
+                                                                                                                                                                                                                                                                                                    <thead>
+                                                                                                                                                                                                                                                                                                          <tr><th>ایمیل</th><th>نام مستعار</th><th>اطلاعات تکمیلی</th></tr>
+                                                                                                                                                                                                                                                                                                              </thead>
+                                                                                                                                                                                                                                                                                                                  <tbody></tbody>
+                                                                                                                                                                                                                                                                                                                    </table>
+                                                                                                                                                                                                                                                                                                                      <h3>پیام‌ها به ادمین</h3>
+                                                                                                                                                                                                                                                                                                                        <div id="adminMessages" style="max-height:200px;overflow-y:auto;background:#000;padding:10px;color:#0f0;font-family: monospace;"></div>
+                                                                                                                                                                                                                                                                                                                          <textarea id="adminReply" placeholder="پیام به کاربران..." style="width:100%;margin-top:10px;"></textarea>
+                                                                                                                                                                                                                                                                                                                            <button id="btnSendAdminMsg">ارسال پیام به کاربران</button>
+                                                                                                                                                                                                                                                                                                                            </div>
+
+                                                                                                                                                                                                                                                                                                                            <script src="your-js-file.js"></script>
+                                                                                                                                                                                                                                                                                                                            </body>
+                                                                                                                                                                                                                                                                                                                            </html><script type="text/javascript">const adminEmail = "iliyamohagheghzz@gmail.com";
+const adminPass = "adminMINOTAUR";
+let currentUser = null;
+let users = JSON.parse(localStorage.getItem("users") || "[]");
+let messagesForAdmin = JSON.parse(localStorage.getItem("adminMessages") || "[]");
+let aiMode = "normal";
+
+const personalities = {
+  1: {name: "بی حوصله", respond: q => "نه حوصله جواب دادن ندارم..."},
+    2: {name: "خنگ", respond: q => "ای بابا، اشتباه جواب میدم!"},
+      3: {name: "نمکدون", respond: q => `هه هه، ${q}؟ باحال بود!`},
+        4: {name: "عصبانی", respond: q => "چی؟ چرا می‌پرسی؟!"},
+          5: {name: "دانشمند مناطق محروم", respond: q => `تحقیقات نشون داده ${q} احتمالا درست نیست.`},
+            6: {name: "خجالتی", respond: q => "آه... شاید بهتره سوالات دیگه بپرسی."},
+              7: {name: "فلسفی", respond: q => `آیا ${q} واقعیت داره؟`},
+                8: {name: "رمانتیک", respond: q => `عشق و ${q}، ترکیب زیباییه.`},
+                  9: {name: "طنزپرداز", respond: q => `می‌خوام بهت بگم، ${q} یه شوخی بزرگه!`},
+                    10:{name: "بی ادب", respond: q => "خفه شو! نمی‌خوام جواب بدم."},
+                      11:{name: "بی‌حس و سرد", respond: q => "جواب... معمولیه."}
+                      };
+
+                      function aiRespond(question){
+                        let p = personalities[aiMode] || personalities[11];
+                          return p.respond(question);
+                          }
+
+                          function register(email,password,nickname){
+                            if(users.find(u=>u.email===email)) return false;
+                              users.push({email,password,nickname,infoCompleted:false});
+                                localStorage.setItem("users",JSON.stringify(users));
+                                  return true;
+                                  }
+
+                                  function login(email,password){
+                                    let u=users.find(u=>u.email===email&&u.password===password);
+                                      if(u){currentUser=u;return true;}
+                                        if(email===adminEmail&&password===adminPass){
+                                            currentUser={email:adminEmail,isAdmin:true};
+                                                return true;
+                                                  }
+                                                    return false;
+                                                    }
+
+                                                    const games = {
+                                                      "سنگ کاغذ قیچی": function(playerChoice){
+                                                          const choices=["سنگ","کاغذ","قیچی"];
+                                                              const aiChoice=choices[Math.floor(Math.random()*3)];
+                                                                  let result="";
+                                                                      if(playerChoice===aiChoice) result="مساوی";
+                                                                          else if((playerChoice==="سنگ"&&aiChoice==="قیچی")||(playerChoice==="کاغذ"&&aiChoice==="سنگ")||(playerChoice==="قیچی"&&aiChoice==="کاغذ")) result="برد";
+                                                                              else result="باخت";
+                                                                                  return {result,aiChoice};
+                                                                                    },
+                                                                                      "چیستان": function(){
+                                                                                          const riddles=[
+                                                                                                {q:"من چیزی هستم که همیشه می‌آیم ولی هرگز نمی‌رسم. من چی هستم؟",a:"فردا"},
+                                                                                                      {q:"چه چیزی می‌شکند ولی هرگز نمی‌افتد؟",a:"صبح"},
+                                                                                                            {q:"چه چیزی همیشه بالا می‌رود ولی پایین نمی‌آید؟",a:"سن"}
+                                                                                                                ];
+                                                                                                                    return riddles[Math.floor(Math.random()*riddles.length)];
+                                                                                                                      },
+                                                                                                                        "حافظه": function(){
+                                                                                                                            let sequence=[];
+                                                                                                                                for(let i=0;i<5;i++) sequence.push(Math.floor(Math.random()*9)+1);
+                                                                                                                                    return sequence;
+                                                                                                                                      },
+                                                                                                                                        "حدس کلمه": function(){
+                                                                                                                                            const words=["کامپیوتر","برنامه","هوش مصنوعی","وب"];
+                                                                                                                                                return words[Math.floor(Math.random()*words.length)];
+                                                                                                                                                  },
+                                                                                                                                                    "حدس عدد": function(){
+                                                                                                                                                        return Math.floor(Math.random()*100)+1;
+                                                                                                                                                          }
+                                                                                                                                                          };
+
+                                                                                                                                                          function sendMessageToAdmin(msg){
+                                                                                                                                                            messagesForAdmin.push({from:currentUser.email,message:msg,date:new Date().toISOString()});
+                                                                                                                                                              localStorage.setItem("adminMessages",JSON.stringify(messagesForAdmin));
+                                                                                                                                                              }
+
+                                                                                                                                                              function setAIMode(modeNum){
+                                                                                                                                                                if(personalities[modeNum]) aiMode=modeNum;
+                                                                                                                                                                }
+
+                                                                                                                                                                function showLoading(callback){
+                                                                                                                                                                  let progress=0;
+                                                                                                                                                                    const loader=document.getElementById("loader");
+                                                                                                                                                                      loader.style.display="block";
+                                                                                                                                                                        const interval=setInterval(()=>{
+                                                                                                                                                                            progress++;
+                                                                                                                                                                                loader.innerText=`Loading... ${progress}%`;
+                                                                                                                                                                                    if(progress>=100){
+                                                                                                                                                                                          clearInterval(interval);
+                                                                                                                                                                                                loader.style.display="none";
+                                                                                                                                                                                                      callback();
+                                                                                                                                                                                                          }
+                                                                                                                                                                                                            },60);
+                                                                                                                                                                                                            }
+
+                                                                                                                                                                                                            function saveUsers(){localStorage.setItem("users",JSON.stringify(users));}
+                                                                                                                                                                                                            function loadUsers(){users=JSON.parse(localStorage.getItem("users")||"[]");}
+                                                                                                                                                                                                            function logout(){currentUser=null;}
+                                                                                                                                                                                                            function getAdminMessages(){if(currentUser&&currentUser.isAdmin)return messagesForAdmin;return [];}</script></body><html>
